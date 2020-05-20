@@ -16,7 +16,8 @@ const GoalInput = (props) => {
                 <TextInput placeholder="Course Goals" style={styles.TextInputStyle} onChangeText={goalInputHandler} />
             </View>
             <View>
-                <Button title="Add" onPress={(()=>props.goalHandler(enteredGoal))} />
+            {/* Used bind method to send wnrwesgoal to vutton as an argument */}
+                <Button title="Add" onPress={props.goalHandler.bind(this,enteredGoal)} />
             </View>
         </View>
     )
