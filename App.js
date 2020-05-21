@@ -9,25 +9,28 @@ export default function App() {
 
 
   const addGoalHandler = goalEntered => {
-
     setCourseGoals([...courseGoals,
-    { key: Math.random().toString, value: goalEntered }]);
+    { key: Math.random(), value: goalEntered }]);
     console.log("text addedd", courseGoals);
   }
-
+  const removeCourseGoals = goalID => {
+    console.log("toch working", goalID);
+    setCourseGoals(courseGoals => {
+      return courseGoals.filter((goals) => goals.key !== goalID);
+      }  )
+      console.log("new text working", courseGoals);
+  }
   return (
     <View>
-    <GoalInput goalHandler= {addGoalHandler}/>
-      <View>
-           
-      </View>
+      <GoalInput goalHandler={addGoalHandler} />
       <FlatList keyExtractor={(item, index) => item.id} data={courseGoals} renderItem={itemData =>
-        <GoalText item={itemData.item.value} />} />
+        // console.log("itemData",itemData)
+        <GoalText id={itemData.item.key} item={itemData.item.value} onDelete={removeCourseGoals} />} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
- 
+
 
 });
